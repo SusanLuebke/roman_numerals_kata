@@ -1,4 +1,41 @@
+function digitsToRomanNumerals(num) {
+  if (num <= 0 || num > 3000) {
+    return null;
+  }
 
+  var result = "";
+  var romans = [
+    "M",
+    "CM",
+    "D",
+    "CD",
+    "C",
+    "XC",
+    "L",
+    "XL",
+    "X",
+    "IX",
+    "V",
+    "IV",
+    "I",
+  ];
+  var numbers = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+
+  for (var x = 0; x < romans.length; x++) {
+    while (num >= numbers[x]) {
+      result += romans[x];
+      num -= numbers[x];
+    }
+  }
+  return result;
+}
+
+// Need this for VSC, not repl.it
+module.exports = {
+  digitsToRomanNumerals,
+};
+
+// First Attempt: version in having to reverse and really it was about two arrays to avoid keys/values
 // function digitsToRomanNumerals(num) {
 //   const romanMap = {
 //     1: "I",
@@ -40,11 +77,6 @@
 //   return romanNumeral;
 // }
 
-// Need this for VSC, not repl.it
-module.exports = {
-  digitsToRomanNumerals,
-};
-
 // Part I
 // 1 to 3000
 // 1 --> I
@@ -56,24 +88,3 @@ module.exports = {
 
 // Need to test in repl.it
 // console.log("Digit to Roman numerals: "+ digitsToRomanNumerals(5));
-
-// Original version in having to reverse and really it was about two arrays to avoid keys/values
-
-
-function digitsToRomanNumerals(num) {
-  if(num <= 0 || num > 3000) {
-     return null;
-  }
-
-  var result = '';
-  var romans = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'];
-  var numbers = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
-  
-  for (var x = 0; x < romans.length; x++) {
-    while (num >= numbers[x]) {
-      result += romans[x];
-      num -= numbers[x];
-    }
-  }
-  return result;
-}
